@@ -1,135 +1,138 @@
-🐧 Penguin Species Classifier
+# 🐧 Penguin Species Classifier
 
-This project applies machine learning techniques to classify penguin species using the Palmer Penguins dataset. It includes exploratory data analysis, feature selection, model evaluation, and visualization. Our goal was to determine which models and features most accurately predict the species of a penguin based on physical characteristics and categorical traits.
+> A machine learning project to classify penguin species using physical and categorical traits from the Palmer Penguins dataset.
 
-📌 Project Overview
+---
 
-We explored and modeled the classification of three penguin species — Adelie, Chinstrap, and Gentoo — using various supervised learning algorithms. We performed data cleaning, visualization, and feature selection before training and comparing the performance of the following models:
+## 📌 Overview
 
-- K-Nearest Neighbors (KNN)
-- Random Forest Classifier
-- Support Vector Machine (SVM)
+We explored and modeled the classification of three penguin species:
 
-🧠 Group Contributions
+* **Adelie**
+* **Chinstrap**
+* **Gentoo**
 
-Member
+Using supervised learning algorithms, we performed:
 
-Contributions
+* ✅ Data cleaning
+* 📊 Exploratory data analysis
+* 🔍 Feature selection
+* 🤖 Model training and evaluation
 
-Alan
+### Models Used
 
-Data cleaning, third figure, third model (Random Forest), discussion, revisions
+* K-Nearest Neighbors (KNN)
+* Random Forest Classifier
+* Support Vector Machine (SVM)
 
-Clarence
+---
 
-First figure, first model (KNN), table creation, feature selection with Nathaniel, revisions
+## 🧠 Group Contributions
 
-Nathaniel
+| Member        | Contributions                                                           |
+| ------------- | ----------------------------------------------------------------------- |
+| **Alan**      | Data cleaning, third figure, Random Forest model, discussion, revisions |
+| **Clarence**  | First figure, KNN model, tables, feature selection, revisions           |
+| **Nathaniel** | Second figure, SVM model, feature selection, revisions                  |
 
-Second figure, second model (SVM), feature selection with Clarence, revisions
+---
 
-📂 Data Cleaning
+## 📂 Data Cleaning
 
-We removed:
+**Steps Taken:**
 
-The Comments column.
+* Removed the `Comments` column
+* Dropped rows with missing values
+* Filtered invalid entries in the `Sex` column
 
-Rows with missing values.
-
-Rows with invalid entries (e.g., Sex column containing ".").
-
+```python
 def cleaning_data(data):
     data = data.drop(['Comments'], axis=1)
     data = data.dropna()
     if (data['Sex'] == '.').any():
         data = data.drop(data[data['Sex'] == '.'].index)
     return data
+```
 
-📊 Exploratory Data Analysis
+---
 
-We visualized:
+## 📊 Exploratory Data Analysis
 
-Distributions of quantitative features (culmen length/depth, flipper length, body mass).
+We examined:
 
-Histograms of body mass per species.
+* **Boxplots** of quantitative features
+* **Histograms** of body mass
+* **Scatter plots** of Culmen Length vs. Depth
 
-A scatter plot of culmen length vs. culmen depth, which revealed distinct clusters.
+### Key Insights
 
-Key insights:
+* **Culmen Length** and **Depth** were strong predictors.
+* **Body Mass** showed significant overlap between species.
+* **Island** emerged as a highly predictive categorical feature.
 
-Culmen Length and Culmen Depth were the most discriminative features.
+---
 
-Body Mass had significant overlap between species and was less useful for prediction.
+## 🔍 Feature Selection
 
-Island feature appeared promising due to distinct species-to-island mappings.
+We used 4-fold cross-validation on all 3-feature combinations:
 
-🔍 Feature Selection
+> Best feature set: `Culmen Length (mm)`, `Culmen Depth (mm)`, `Island`
 
-We evaluated combinations of quantitative and categorical features using 4-fold cross-validation on a Logistic Regression model. The top-performing combination:
+---
 
-Culmen Length (mm)
+## 🤖 Model Performance
 
-Culmen Depth (mm)
+### 🔎 K-Nearest Neighbors (KNN)
 
-Island
+* **Best k:** 9
+* **Accuracy:** 98.46%
+* One Chinstrap penguin misclassified
 
-🤖 Models and Evaluation
+### 🌳 Random Forest
 
-1. K-Nearest Neighbors (KNN)
+* **Best depth:** 5
+* **Accuracy:** 100%
+* No misclassifications
 
-Best k: 9
+### ⚖️ Support Vector Machine (SVM)
 
-Test Accuracy: 98.46%
+* **Best γ (gamma):** 0.006
+* **Accuracy:** 95.39%
+* Minor confusion between Chinstrap and Gentoo
 
-Confusion matrix: 1 Chinstrap misclassified.
+---
 
-2. Random Forest Classifier
-
-Best max depth: 5
-
-Test Accuracy: 100%
-
-Clean decision boundaries, no misclassifications.
-
-3. Support Vector Machine (SVM)
-
-Best γ (gamma): 0.006
-
-Test Accuracy: 95.39%
-
-A few Gentoo and Chinstrap penguins misclassified.
-
-📈 Visualizations
+## 📈 Visualizations
 
 We created:
 
-Boxplots and histograms to examine feature distributions.
+* � Boxplots & Histograms
+* 🔺 Scatter plots
+* 🎨 Decision region graphs
+* 📊 Confusion matrices
 
-Scatter plots to identify separability of features.
+These helped identify which features were most separable and how models behaved across islands.
 
-Decision region plots for each classifier by island.
+---
 
-Confusion matrices to evaluate classification performance.
+## 📌 Key Discussion Points
 
-📌 Key Discussion Points
+* All models exceeded 95% accuracy
+* Random Forest was the best performer
+* Body Mass & Sex were not useful predictors
+* **Suggested Improvement:** Use an "island-first" model-fitting strategy to refine decision regions
 
-All models performed above 95% accuracy, with Random Forest achieving perfect accuracy.
+---
 
-Features chosen through cross-validation proved highly effective.
+## 📁 Tech Stack
 
-Body Mass and Sex were not informative for classification.
+* Python: `pandas`, `numpy`, `scikit-learn`, `matplotlib`, `seaborn`
+* Environment: Jupyter Notebook
+* Dataset: Palmer Penguins
 
-Suggested Improvement: An "iterative prediction" strategy where models are fit in two stages — first by Island, then by culmen measurements — could enhance classification performance by reducing noise in decision regions.
+---
 
-📁 Technologies Used
-
-Python (Pandas, NumPy, scikit-learn, Matplotlib, Seaborn)
-
-Jupyter Notebooks
-
-Palmer Penguins dataset
-
-Example Usage: 
+## 🎯 Example Usage with KNN
 
 <img width="557" alt="knn_confusion_matrix" src="https://github.com/user-attachments/assets/6a6c0c72-49ac-40ae-8f9b-0705190d42d0" />
 <img width="1189" alt="KNN" src="https://github.com/user-attachments/assets/c3750d9d-f352-4f0a-bb95-3d67941b72a0" />
