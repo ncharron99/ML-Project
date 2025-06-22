@@ -1,6 +1,6 @@
 # 🐧 Penguin Species Classifier
 
-> A machine learning project to classify penguin species using physical and categorical traits from the Palmer Penguins dataset.
+> A machine learning class project to classify penguin species using physical and categorical traits from the Palmer Penguins dataset.
 
 ---
 
