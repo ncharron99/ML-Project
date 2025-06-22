@@ -6,11 +6,9 @@ This project applies machine learning techniques to classify penguin species usi
 
 We explored and modeled the classification of three penguin species — Adelie, Chinstrap, and Gentoo — using various supervised learning algorithms. We performed data cleaning, visualization, and feature selection before training and comparing the performance of the following models:
 
-K-Nearest Neighbors (KNN)
-
-Random Forest Classifier
-
-Support Vector Machine (SVM)
+- K-Nearest Neighbors (KNN)
+- Random Forest Classifier
+- Support Vector Machine (SVM)
 
 🧠 Group Contributions
 
@@ -130,3 +128,7 @@ Python (Pandas, NumPy, scikit-learn, Matplotlib, Seaborn)
 Jupyter Notebooks
 
 Palmer Penguins dataset
+
+Example Usage: 
+<img width="557" alt="knn_confusion_matrix" src="https://github.com/user-attachments/assets/6a6c0c72-49ac-40ae-8f9b-0705190d42d0" />
+<img width="1189" alt="KNN" src="https://github.com/user-attachments/assets/c3750d9d-f352-4f0a-bb95-3d67941b72a0" />
